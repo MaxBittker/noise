@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0",
     "build": "./node_modules/webpack/bin/webpack.js"
   },
   "author": "maxbittker <maxbittker@gmail.com> (maxbittker.github.io)",

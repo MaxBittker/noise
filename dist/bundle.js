@@ -10354,7 +10354,7 @@ return wrapREGL;
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = "precision mediump float;\n#define GLSLIFY 1\nuniform float t;\nuniform vec2 resolution;\nuniform sampler2D backBuffer;\n\nvarying vec2 uv;\n\n// clang-format off\n// #pragma glslify: hsv2rgb = require('glsl-hsv2rgb')\n// clang-format on\n\nconst float PHI = 1.61803398874989484820459; // Φ = Golden Ratio \n\nfloat gold_noise(in vec2 xy, in float seed)\n{\n    return fract(tan(distance(xy*PHI, xy)*seed)*xy.x);\n}\n\n\nvoid main() {\n  vec2 xy = (uv-vec2(1.0)) * resolution;\n\n  float time = t/ (1000.);\n  vec3 color = vec3(gold_noise(xy, fract(time)+1.0), // r\n                gold_noise(xy, fract(time)+2.0), // g\n                gold_noise(xy, fract(time)+3.0));\n                \n  gl_FragColor = vec4(color, 1.0);\n}"
+module.exports = "precision highp float;\n#define GLSLIFY 1\nuniform float t;\nuniform vec2 resolution;\nuniform sampler2D backBuffer;\n\nvarying vec2 uv;\n\n// clang-format off\n// #pragma glslify: hsv2rgb = require('glsl-hsv2rgb')\n// clang-format on\n\nconst float PHI = 1.61803398874989484820459; // Φ = Golden Ratio \n\nfloat gold_noise(in vec2 xy, in float seed)\n{\n    return fract(tan(distance(xy*PHI, xy)*seed)*xy.x);\n}\n\n\nvoid main() {\n  vec2 xy = (uv-vec2(1.0)) * resolution ;\n  // vec2 xy = fract(uv+vec2(1.0))*2.) * resolution ;\n\n  float time = t/ (1000.);\n  vec3 color = vec3(gold_noise(xy, fract(time)+1.0), // r\n                gold_noise(xy, fract(time)+2.0), // g\n                gold_noise(xy, fract(time)+3.0));\n                \n  gl_FragColor = vec4(color, 1.0);\n}"
 
 /***/ })
 /******/ ]);
