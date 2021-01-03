@@ -70,6 +70,21 @@
 // import { setupOverlay } from "regl-shader-error-overlay";
 // setupOverlay();
 
+function toggleFullscreen() {
+  let elem = document.querySelector("canvas");
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen().catch((err) => {
+      alert(
+        `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+      );
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+document.body.addEventListener("click", toggleFullscreen);
+document.body.addEventListener("touchstart", toggleFullscreen);
 const regl = __webpack_require__(1)({});
 
 let fsh = __webpack_require__(2);
